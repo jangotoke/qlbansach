@@ -1,0 +1,7 @@
+﻿@model IEnumerable<QuanLyNhaSach.Models.CHUDE>
+<ul class="left_menu">
+    @foreach (var item in Model)
+    {
+        <li class="odd"><a href="@Url.Action("SPTheochude", "BookStore", new { id = item.MaCD})">@item.TenChuDe</a></li>
+    }
+</ul>

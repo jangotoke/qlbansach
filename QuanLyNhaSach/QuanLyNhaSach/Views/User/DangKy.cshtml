@@ -1,0 +1,155 @@
+﻿@model QuanLyNhaSach.Models.KHACHHANG
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Nguyen Luc Y Duyen - 15DH110225</h1>
+<div style="text-align:right; position:relative; margin-bottom: 20px;">
+    <a style="text-align:center; padding:10px; box-sizing:border-box; box-shadow: 1px 1px 3px black; border-radius: 10px; text-decoration:none;background-color:deepskyblue; color:white; font-weight:600; line-height:20px; text-transform:uppercase;" class="btn btn-default" href="@Url.Action("Login","Admin")">Đăng nhập vào trang quản trị</a>
+</div>
+<div class="top_bar">
+    <div class="top_search">
+        <div class="search_text"><a href="http://all-free-download.com/free-website-templates/">Tìm kiếm</a></div>
+        <input type="text" class="search_input" name="search" />
+        <input type="image" src="../../images/search.gif" class="search_bt" />
+    </div>
+</div>
+<div id="header">
+    <div id="logo"> <a href="@Url.Action("Index","BookStore")"><img src="~/images/logo-nhasachphuongnam.com_.png" alt="" border="0" width="510" height="140"></a> </div>
+</div>
+<div id="main_content">
+    <div id="menu_tab">
+        <div class="left_menu_corner"></div>
+        <ul class="menu">
+            <li><a href="@Url.Action("Index","BookStore")" class="nav1">Trang chủ</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("Index","BookStore")" class="nav2">Sản phẩm</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("Index","BookStore")" class="nav3">Liên hệ</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("DangKy","User")" class="nav4">Đăng ký</a></li>
+            <li class="divider"></li>
+            <li>
+                @Html.Action("GiohangPartial", "GioHang")
+            </li>
+        </ul>
+        <div class="right_menu_corner"></div>
+    </div>
+    <!-- end of menu tab -->
+    <div class="left_content">
+        <div class="title_box" style="color:white">Thể loại sách</div>
+        @Html.Action("Chude", "BookStore")
+
+        <div class="title_box" style="color:white">Sản phẩm đặc biệt</div>
+        <div class="border_box">
+            <div class="product_title"><a href="details.html">Vì em gặp anh</a></div>
+            <div class="product_img"><a href="details.html"><img style="max-width: 100px;" src="../../images/1A.jpg" alt="" border="0" /></a></div>
+            <div class="prod_price"><span class="reduce">35.000 VND</span> <span class="price">27.000 VND</span></div>
+        </div>
+        <div class="title_box" style="color:white">Nhận bảng tin</div>
+        <div class="border_box">
+            <input type="text" name="newsletter" class="newsletter_input" value="Email của bạn" />
+            <a href="http://all-free-download.com/free-website-templates/" class="join">Gửi</a>
+        </div>
+        <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img style="max-width: 200px;" src="../../images/banner2.jpg" alt="" border="0" /></a> </div>
+    </div>
+    <!-- end of left content -->
+    <div class="center_content">
+        <div class="center_title_bar">ĐĂNG KÝ THÀNH VIÊN</div>
+        <div style="float:left; width:100%; text-align:center">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <div class="" style="height:40px">
+                    <div class="" style="">Họ tên khách hàng:</div>
+                    <div class="" style="">
+                        @Html.TextBox("HoTenKH")
+                        @ViewData["Loi1"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Tên đăng nhập:</div>
+                    <div class="" style="">
+                        @Html.TextBox("TenDN")
+                        @ViewData["Loi2"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Mật khẩu:</div>
+                    <div class="" style="">
+                        @Html.Password("Matkhau")
+                        @ViewData["Loi3"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Mật khẩu nhập lại:</div>
+                    <div class="" style="">
+                        @Html.Password("Matkhaunhaplai")
+                        @ViewData["Loi4"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Địa chỉ:</div>
+                    <div class="" style="">
+                        @Html.TextBox("DiachiKH")
+                        @ViewData["Loi5"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Email:</div>
+                    <div class="" style="">
+                        @Html.TextBox("Email")
+                        @ViewData["Loi6"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Điện thoại:</div>
+                    <div class="" style="">
+                        @Html.TextBox("DienthoaiKH")
+                        @ViewData["Loi7"]
+                    </div>
+                </div>
+                <div class="" style="height:40px">
+                    <div class="" style="">Ngày sinh:</div>
+                    <div class="" style="">
+                        <input type="date" name="Ngaysinh" />
+                    </div>
+                </div>
+                <div style="height:40px">
+                    <div></div>
+                    <div>
+                        <input type="submit" value="Đăng ký" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- end of center content -->
+    <div class="right_content">
+        <div class="title_box" style="color:white">Có gì mới</div>
+        <div class="border_box">
+            <div class="product_title"><a href="details.html">300 bài hát thiếu nhi</a></div>
+            <div class="product_img"><a href="details.html"><img style="max-width: 100px;" src="../../images/sach4.jpg" alt="" border="0" /></a></div>
+            <div class="prod_price"><span class="reduce">35.000 VND</span> <span class="price">27.000 VND</span></div>
+        </div>
+
+        <div class="title_box" style="color:white">Nhà xuất bản</div>
+        @Html.Action("Nhaxuatban", "BookStore")
+
+        <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img style="max-width: 200px;" src="../../images/banner2.png" alt="" border="0" /></a> </div>
+    </div>
+    <!-- end of right content -->
+    </div>
+    <!-- end of main content -->
+    <div class="footer">
+        <div class="left_footer"> </div>
+        <div class="center_footer">
+            Website quản lý nhà sách
+        </div>
+        <div class="right_footer">
+            <a href="http://all-free-download.com/free-website-templates/">Trang chủ</a>
+            <a href="contact.html">Liên hệ</a>
+        </div>
+    </div>
+    <!-- end of main_container -->

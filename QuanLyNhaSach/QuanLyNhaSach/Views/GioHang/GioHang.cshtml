@@ -1,0 +1,131 @@
+﻿@using QuanLyNhaSach.Models
+@model List<Giohang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1>Nguyen Luc Y Duyen - 15DH110225</h1>
+<div style="text-align:right; position:relative; margin-bottom: 20px;">
+    <a style="text-align:center; padding:10px; box-sizing:border-box; box-shadow: 1px 1px 3px black; border-radius: 10px; text-decoration:none;background-color:deepskyblue; color:white; font-weight:600; line-height:20px; text-transform:uppercase;" class="btn btn-default" href="@Url.Action("Login","Admin")">Đăng nhập vào trang quản trị</a>
+</div>
+<div id="header">
+    <div id="logo"> <a href="@Url.Action("Index","BookStore")"><img src="~/images/logo-nhasachphuongnam.com_.png" alt="" border="0" width="510" height="140"></a> </div>
+</div>
+<div id="header">
+    <div id="logo"> <a href="http://all-free-download.com/free-website-templates/"><img src="~/images/logo-nhasachphuongnam.com_.png" alt="" border="0" width="510" height="140"></a> </div>
+</div>
+<div id="main_content">
+    <div id="menu_tab">
+        <div class="left_menu_corner"></div>
+        <ul class="menu">
+            <li><a href="@Url.Action("Index","BookStore")" class="nav1">Trang chủ</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("Index","BookStore")" class="nav2">Sản phẩm</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("Index","BookStore")" class="nav3">Liên hệ</a></li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("DangKy","User")" class="nav4">Đăng ký</a></li>
+            <li class="divider"></li>
+            <li>
+                @Html.Action("GiohangPartial", "GioHang")
+            </li>
+        </ul>
+        <div class="right_menu_corner"></div>
+    </div>
+    <!-- end of menu tab -->
+    <div class="left_content">
+        <div class="title_box" style="color:white">Thể loại sách</div>
+        @Html.Action("Chude", "BookStore")
+
+        <div class="title_box" style="color:white">Sản phẩm đặc biệt</div>
+        <div class="border_box">
+            <div class="product_title"><a href="details.html">Vì em gặp anh</a></div>
+            <div class="product_img"><a href="details.html"><img style="max-width: 100px;" src="../../images/1A.jpg" alt="" border="0" /></a></div>
+            <div class="prod_price"><span class="reduce">35.000 VND</span> <span class="price">27.000 VND</span></div>
+        </div>
+        <div class="title_box" style="color:white">Nhận bảng tin</div>
+        <div class="border_box">
+            <input type="text" name="newsletter" class="newsletter_input" value="Email của bạn" />
+            <a href="http://all-free-download.com/free-website-templates/" class="join">Gửi</a>
+        </div>
+        <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img style="max-width: 200px;" src="../../images/banner2.jpg" alt="" border="0" /></a> </div>
+    </div>
+    <!-- end of left content -->
+    <div class="center_content">
+        <div class="center_title_bar">THÔNG TIN GIỎ HÀNG</div>
+        <div class="prod_box" style="min-height: 250px; width:100%">
+            <table align="center" border="1">
+                <tr>
+                    <td class="" style="">Mã sách</td>
+                    <td class="" style="">Tên sách</td>
+                    <td class="" style="">Ảnh bìa</td>
+                    <td class="" style="">Số lượng</td>
+                    <td class="" style="">Đơn giá</td>
+                    <td class="" style="">Thành tiền</td>
+                    <td class="" style="width:50px"></td>
+                    <td class="" style="width:50px"></td>
+                    <td class="" style="width:50px"></td>
+                </tr>
+                @foreach (var item in Model)
+                    {
+                    <tr class="" style="width:100%; text-align:center">
+                        <td class="" style="">@item.iMasach</td>
+                        <td class="" style="">@item.sTensach</td>
+                        <td class="" style=""><img src="../../Hinhsanpham/@item.sHinhminhhoa"></td>
+                        @using (Html.BeginForm("CapnhatGiohang", "Giohang", new { @iMaSp = item.iMasach }))
+                        {
+                            <td>
+                                <input type="number" min="1" name="txtSoluongban" value="@item.iSoluongban" style="background-color:yellow; max-width:30px" />
+                            </td>
+                            <td class="" style="">@String.Format("{0:0,0}", item.dDongia)</td>
+                            <td class="" style="">@String.Format("{0:0,0}", item.dThanhtien)</td>
+                            <td class="" style=""><a href="@Url.Action("Details", "BookStore", new { id = item.iMasach })">Chi tiết</a></td>
+                            <td class="" style="">@Html.ActionLink("Xóa", "XoaGiohang", new { @iMaSp = item.iMasach })</td>
+                            <td class="" style=""><input type="submit" value="Cập nhật" /></td>
+                        }
+                    </tr>
+                }
+                <tr style="font-weight:bold; text-align:right; color:red">
+                    <td class="" style="" colspan="4">Số lượng sách: @ViewBag.TongSoLuong</td>
+                    <td class="" style="" colspan="5">Tổng tiền: @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ </td>
+                </tr>
+                <tr style="font-weight:bold; text-align:right; color:blue">
+                    <td class="" style="" colspan="9">@Html.ActionLink("Xóa giỏ hàng","XoaTatcaGiohang")</td>
+                </tr>
+                <tr style="font-weight:bold; text-align:right; color:blue">
+                    <td class="" style="" colspan="9" align="center">@Html.ActionLink("ĐẶT HÀNG", "Dathang", "GioHang")</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- end of center content -->
+    <div class="right_content">
+        <div class="title_box" style="color:white">Có gì mới</div>
+        <div class="border_box">
+            <div class="product_title"><a href="details.html">300 bài hát thiếu nhi</a></div>
+            <div class="product_img"><a href="details.html"><img style="max-width: 100px;" src="../../images/sach4.jpg" alt="" border="0" /></a></div>
+            <div class="prod_price"><span class="reduce">35.000 VND</span> <span class="price">27.000 VND</span></div>
+        </div>
+
+        <div class="title_box" style="color:white">Nhà xuất bản</div>
+        @Html.Action("Nhaxuatban", "BookStore")
+
+        <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img style="max-width: 200px;" src="../../images/banner2.png" alt="" border="0" /></a> </div>
+    </div>
+    <!-- end of right content -->
+</div>
+<!-- end of main content -->
+<div class="footer">
+    <div class="left_footer"> </div>
+    <div class="center_footer">
+        Website quản lý nhà sách
+    </div>
+    <div class="right_footer">
+        <a href="http://all-free-download.com/free-website-templates/">Trang chủ</a>
+        <a href="contact.html">Liên hệ</a>
+    </div>
+</div>
+<!-- end of main_container -->
+

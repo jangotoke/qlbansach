@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="../../Content/style_1.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class="avatar">
+            <img src="../../images/chimcanhcut.png">
+        </div>        
+        @using (Html.BeginForm())
+        { 
+            @Html.ValidationSummary(true)
+                <input type="text" name="username" placeholder="Tài khoản" required>
+                @ViewData["Loi1"]
+                <div class="bar">
+                    <i></i>
+                </div>
+                <input type="password" name="password" placeholder="Mật khẩu" required>
+                @ViewData["Loi2"]
+                <a href="" class="forgot_link">quên tài khoản?</a>
+                <h4 style="color:red; text-align:center">@ViewBag.Thongbao</h4>
+                <button>Đăng nhập</button>
+        }
+    </div>
+
+    <script src="../../Scripts/index.js"></script>
+</body>
+</html>
